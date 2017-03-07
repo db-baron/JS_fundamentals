@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Pokemon Battle</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>
+        $(function(){
+            var $cards = $('#cards');
+            $.ajax({
+                type: "Get",
+                url: "http://pokeapi.co/api/v1/pokemon",
+                success: function(cards){
+                    console.log("success", cards) // data is an array
+                    $.each(cards, function(i, card){
+                        $cards.append("<li>name: "+ card.name"</li>");
+                    })
+                }
+            });
+        });
+        </script>
+    </head>
+    <body>
+    <h2>Welcome to Pokemon Battle</h2>
+    <h3>Add a Player</h3>
+    <p>playername: <input type="text" id="playername"></p>
+    <button id="add-player">Add</button>
+    <h3>Player's Cards</h3>
+    <ul id = "cards">
+        <li>Pokemon Name: Pichachu</li>
+        <li>Pokemon Name: Squirtl</li>
+    </ul>
+    <script src="/jQuery/dist/jquery.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    </body>
+</html>
