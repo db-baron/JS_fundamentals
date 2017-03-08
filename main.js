@@ -23,14 +23,14 @@ console.log(sumforAve/newlist.length);   // The average
 
 // Write a for-in loop that will navigate through the object below
 var newNinja = {
- name: 'Jessica',
- profession: 'coder',
- favorite_language: 'JavaScript', //like that's even a question!
- dojo: 'Dallas'
+    name: 'Jessica',
+    profession: 'coder',
+    favorite_language: 'JavaScript', //like that's even a question!
+    dojo: 'Dallas'
 }
 for (i in newNinja){
     console.log(newNinja[i]);
 }
-document.body.innerHTML = "Woooooo";
-document.body.innerHTML = min;
+document.body.innerHTML = "Woooooo!";
+document.body.innerHTML = min + "Allright!";
 // document.body.innerHTML = newNinja;
