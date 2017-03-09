@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Event Listener</title>
+    </head>
+    <body>
+        <button id="someButton">This is A Button Linked to an EVENT Listener</button>
+
+    <script> // Our Event Listener is here
+
+    // Link our variable "button" to a DOM element
+    var button = document.getElementById("someButton")
+
+    // add a DOM eventListener to that variable.
+    button.addEventListener("click", whatToDoOnClick);
+
+    // here we define the whatToDoOnClick function
+    function whatToDoOnClick() {
+        alert("La La Land is overated")
+    }
+    </script>
+    </body>
+</html>
