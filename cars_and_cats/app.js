@@ -5,11 +5,11 @@ var server = http.createServer(function(request, response){
     // serveHTML('cats.html', response);
     // console.log("WWWWW", request.url);
     var splitURL = request.url.split('/');
-    var directory = splitURL[1];
-    console.log("directory you're looking in", directory);
+    var spliturl_index1 = splitURL[1];
+    console.log("splitURL[1] is:", spliturl_index1);
 
     // swtich is cleaner than if/else statements
-    switch (directory) {
+    switch(spliturl_index1) {
         case "styles": // for CSS
             serveCSS(splitURL[2], response);
             break;
@@ -17,16 +17,17 @@ var server = http.createServer(function(request, response){
             serveJPG(splitURL[2], response);
             break;
         default:  // for HTML
-            // Another switch statement for if the directory has another level
+            // Another switch statement for if the spliturl_index1 has another level
             switch (splitURL[1]){
                 case "cats":
                     serveHTML("cats.html", response);
                     break;
                 case "cars":
-                    serveHTML("cars/new.html", response);
-                    break;
-                case "cars/new":
-                    serveHTML("cars.html", response);
+                    if(splitURL[2] === "new") {
+                        serveHTML("new.html", response);
+                    } else {
+                        serveHTML("cars.html", response);
+                    }
                     break;
                 default:
                     serve404(response);
@@ -46,9 +47,11 @@ function serveHTML(filename, response){
         return serve404(response)
     }
     // Respond to the browser's request
-    response.writeHead(200, {'Content-type' : 'text/html' });
-    response.write(contents);  // contents of the file we just read
-    response.end();
+    else {
+        response.writeHead(200, {'Content-type' : 'text/html' });
+        response.write(contents);  // contents of the file we just read
+        response.end();
+    }
   });
 }
 
@@ -60,9 +63,11 @@ function serveCSS(filename, response){
         return serve404(response)
     }
     // Respond to the browser's request
-    response.writeHead(200, {'Content-type' : 'text/css' });
-    response.write(contents);  // contents of the file we just read
-    response.end();
+    else {
+        response.writeHead(200, {'Content-type' : 'text/css' });
+        response.write(contents);  // contents of the file we just read
+        response.end();
+    }
   });
 }
 
@@ -74,9 +79,11 @@ function serveJPG(filename, response){
         return serve404(response)
     }
     // Respond to the browser's request
-    response.writeHead(200, {'Content-type' : 'image/jpg' });
-    response.write(contents);  // contents of the file we just read
-    response.end();
+    else {
+        response.writeHead(200, {'Content-type' : 'image/jpg' });
+        response.write(contents);  // contents of the file we just read
+        response.end();
+    }    
   });
 }
 
