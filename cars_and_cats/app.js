@@ -30,6 +30,7 @@ var server = http.createServer(function(request, response){
                     }
                     break;
                 default:
+                    console.log("hitting serve404")
                     serve404(response);
             }
     }
@@ -44,7 +45,7 @@ function serveHTML(filename, response){
   fs.readFile("views/" + filename, 'utf8', function(error, contents){
     // Check if an error exists
     if (error) {
-        return serve404(response)
+        return serve404(response);
     }
     // Respond to the browser's request
     else {
@@ -60,7 +61,7 @@ function serveCSS(filename, response){
   fs.readFile("stylesheets/" + filename, 'utf8', function(error, contents){
     // Check if an error exists
     if (error) {
-        return serve404(response)
+        return serve404(response);
     }
     // Respond to the browser's request
     else {
@@ -76,20 +77,20 @@ function serveJPG(filename, response){
   fs.readFile("images/" + filename, function(error, contents){
     // Check if an error exists
     if (error) {
-        return serve404(response)
+        return serve404(response);
     }
     // Respond to the browser's request
     else {
         response.writeHead(200, {'Content-type' : 'image/jpg' });
         response.write(contents);  // contents of the file we just read
         response.end();
-    }    
+    }
   });
 }
 
 function serve404(response){
-
-
+    response.writeHead(404);
+    response.end("File not found");
 }
 
 server.listen(7077);
